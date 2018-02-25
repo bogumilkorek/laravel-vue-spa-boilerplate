@@ -1,0 +1,5 @@
+{
+    "Field 'title' is required": "Pole 'tytuł' jest wymagane",
+    "Field 'title' must be unique": "Istnieje już podstrona o takim tytule",
+    "Field 'content' is required": "Pole 'treść' jest wymagane"
+}

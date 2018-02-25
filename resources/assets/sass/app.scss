@@ -1,0 +1,44 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons");
+
+// Vuetify
+@import "~vuetify/dist/vuetify.min.css";
+
+body {
+  font-family: 'Roboto';
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+
+.vcard {
+  background: linear-gradient(111.24892639023471deg, rgba(226, 235, 239,1) 5.533854166666667%,rgba(208, 218, 224,1) 96.67968749999999%);
+}
+
+.drag {
+  width: 0.1%;
+}
+
+.drag-btn {
+  cursor: move;
+}
+
+div.title {
+  color: #474747;
+}

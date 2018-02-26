@@ -23,6 +23,7 @@ export const translationsPL = {
     "No": "Nie",
     "No data": "Brak danych",
     "No search results for": "Brak wyników dla",
+    "Order": "Kolejność",
     "Password": "Hasło",
     "Page has been created.": "Podstrona została dodana.",
     "Page has been deleted.": "Podstrona została usunięta.",

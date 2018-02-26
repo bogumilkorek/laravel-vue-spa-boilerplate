@@ -214,7 +214,7 @@
         },
 
         headers: [
-          { sortable: false },
+          { sortable: false, text: this.$t("Order"), value: "order" },
           { sortable: false, text: this.$t("Title"), value: "title" },
           { sortable: false, text: this.$t("Content"), value: "content" },
           { sortable: false, text: this.$t("Actions"), value: "name" }
@@ -239,7 +239,7 @@
       formTitle() {
         return this.editedIndex === -1
           ? this.$t("New page")
-          : this.$t("Edit page")
+          : this.$t("Edit page") + ' (' + this.editedItem.title + ')' 
       },
 
       formIcon() {

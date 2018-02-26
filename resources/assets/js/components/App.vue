@@ -46,7 +46,7 @@
     </v-navigation-drawer>
     <v-toolbar color="primary" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title id="page-title">
+      <v-toolbar-title>
         {{ pageTitle || $t('Admin panel') }}
       </v-toolbar-title>
     </v-toolbar>

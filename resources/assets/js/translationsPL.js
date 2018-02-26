@@ -32,6 +32,7 @@ export const translationsPL = {
     "Remove file": "Usuń plik",
     "Save": "Zapisz",
     "Search": "Szukaj",
+    "Show in nav": "Pokaż w menu",
     "Success!": "Sukces!",
     "Title": "Tytuł",
     "Try again later": "Spróbuj ponownie później",

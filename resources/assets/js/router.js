@@ -22,7 +22,6 @@ const router = new VueRouter({
             name: 'pages',
             component: Pages,
             meta: { requiresAuth: true },
-            props: { title: 'Podstrony'}
         },
         {
             path: '/login',

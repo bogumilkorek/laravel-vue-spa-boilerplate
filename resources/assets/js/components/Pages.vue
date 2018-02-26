@@ -11,22 +11,28 @@
         >
         </v-text-field>
 
+        <v-tooltip bottom>
+            <v-btn 
+              color="teal"
+              class="ml-3 mr-0"
+              fab dark 
+              slot="activator"
+              @click.native.stop="openDialog"
+            >
+              <v-icon>add</v-icon>
+            </v-btn>
+            <span>{{ $t('Add') }}</span>
+          </v-tooltip>
+
         <v-dialog   
           v-model="dialog"
           fullscreen
           :overlay="false"
           scrollable
+          @keydown.esc="dialog = false"
+          @keydown.ctrl="save"
         >
-          <v-btn 
-            color="teal"
-            class="ml-4 mr-0"
-            fab dark 
-            slot="activator"
-            @click.native="generateFormToken"
-          >
-            <v-icon>add</v-icon>
-          </v-btn>
-
+      
           <v-card tile class="vcard">
             <v-toolbar card dark color="primary">
               <v-btn icon @click.native="dialog = false" dark>
@@ -95,7 +101,7 @@
                     <font-awesome-icon icon="check" class="mr-2" />{{ $t('Save') }}
                   </v-btn>
 
-                  <v-btn color="error" @click.native="close">
+                  <v-btn color="error" @click.native="closeDialog">
                     <font-awesome-icon icon="times" class="mr-2" />{{ $t('Cancel') }}
                   </v-btn>
 
@@ -129,6 +135,14 @@
         <td>{{ props.item.title }}</td>
 
         <td v-html="props.item.short_text"></td>
+
+        <td>
+           <v-switch
+              v-model="props.item.nav"
+              color="primary"
+              @click.native="updateVisibility(props.item)" 
+            ></v-switch>
+        </td>
 
         <td class="justify-center layout px-0">
         
@@ -217,7 +231,8 @@
           { sortable: false, text: this.$t("Order"), value: "order" },
           { sortable: false, text: this.$t("Title"), value: "title" },
           { sortable: false, text: this.$t("Content"), value: "content" },
-          { sortable: false, text: this.$t("Actions"), value: "name" }
+          { sortable: false, text: this.$t("Show in nav"), value: "nav" },
+          { sortable: false, text: this.$t("Actions"), value: "actions" }
         ],
 
         dropzoneOptions: {
@@ -251,7 +266,7 @@
 
     watch: {
       dialog(val) {
-        val || this.close()
+        val || this.closeDialog()
       }
     },
 
@@ -397,20 +412,42 @@
          });
       },
 
-      generateFormToken() {
+      updateVisibility(item) {
+          this.loading = true
+
+          axios
+            .put("/api/pages/" + item.id, {
+              title: item.title,
+              content: item.content,
+              nav: item.nav,
+              id: item.id
+            })
+            .then(response => {
+              this.snackbar = true
+              this.snackbarText = this.$t("Page has been updated.")
+            })
+            .catch(error => {
+              const message = error.response.data.errors.title[0] || this.$t('Try again later!')
+              this.$swal(this.$t('Error!'), message, 'error')
+            })
+            .finally(() => this.loading = false)
+      },
+
+      openDialog() {
+        this.dialog = true
         this.editedItem.formToken = Math.random().toString(36).substr(2).toUpperCase()
       },
 
-      close() {  
+      closeDialog() {  
         this.dialog = false
-        this.clear()
+        this.clearDialog()
         setTimeout(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
         }, 300)
       },
 
-      clear() {
+      clearDialog() {
         this.editedItem.title = ''
         this.editedItem.content = ''
         document.querySelector('#dropzone').classList.remove('dz-started')
@@ -418,6 +455,7 @@
       },
 
       save() {
+        if(this.valid) {
         this.loading = true
         if(this.editedIndex > -1) {
           axios
@@ -428,10 +466,10 @@
             })
             .then(response => {
               Object.assign(this.items[this.editedIndex], response.data)
-              this.clear()
+              this.clearDialog()
               this.snackbar = true
               this.snackbarText = this.$t("Page has been updated.")
-              this.close()
+              this.closeDialog()
             })
             .catch(error => {
               const message = error.response.data.errors.title[0] || this.$t('Try again later!')
@@ -447,10 +485,10 @@
             })
             .then(response => {
               this.items.push(response.data)
-              this.clear()
+              this.clearDialog()
               this.snackbar = true
               this.snackbarText = this.$t("Page has been created.")
-              this.close()
+              this.closeDialog()
             })
             .catch(error => {
               const message = error.response.data.errors.title[0] || this.$t('Try again later!')
@@ -459,6 +497,7 @@
             .finally(() => this.loading = false)
           }
         }
+       }
      }
   }
 </script>

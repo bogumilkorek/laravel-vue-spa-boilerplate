@@ -19,6 +19,7 @@ class PageResource extends Resource
             'title' => $this->title,
             'content' => $this->content,
             'short_text' => substr(strip_tags($this->content), 0, 150) . '...',
+            'nav' => $this->nav,
             'images' => ImageResource::collection($this->images)
         ]; 
     }

@@ -12,7 +12,7 @@ const store = new Vuex.Store()
 localVue.use(vuexI18n.plugin, store)
 localVue.use(VueSweetalert2)
 
-describe('Pages', () => {
+describe('Login', () => {
     beforeEach(() => {
         moxios.install(axios)
     });
@@ -22,12 +22,22 @@ describe('Pages', () => {
     })
 })
 
+// describe('Pages', () => {
+//     beforeEach(() => {
+//         moxios.install(axios)
+//     });
+
+//     afterEach(() => {
+//         moxios.uninstall(axios)
+//     })
+// })
+
 it('renders the correct title on login component', () => {
     let wrapper = shallow(Login, { store, localVue })
     expect(wrapper.html()).toContain('Login')
 });
 
-it('renders the correct title on pages component', () => {
-    let wrapper = shallow(Pages, { localVue })
-    expect(wrapper.html()).toContain('Pages')
-});
+// it('renders the correct title on pages component', () => {
+//     let wrapper = shallow(Pages, { localVue })
+//     expect(wrapper.html()).toContain('Pages')
+// });

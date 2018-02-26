@@ -53,8 +53,6 @@ const mutations = {
     PAGETITLE: (state, payload) => {
         state.pageTitle = payload
     }
-
-
 }
 
 export default new Vuex.Store({

@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->integer('size');
+            $table->boolean('from_dropzone')->nullable();
             $table->string('form_token')->nullable();
             $table->morphs('imageable');
         });

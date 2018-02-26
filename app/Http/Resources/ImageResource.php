@@ -15,7 +15,9 @@ class ImageResource extends Resource
     public function toArray($request)
     {
         return [
-            'url' => $this->url
+            'url' => $this->url,
+            'size' => $this->size,
+            'dropzone' => $this->from_dropzone
         ]; 
     }
 }

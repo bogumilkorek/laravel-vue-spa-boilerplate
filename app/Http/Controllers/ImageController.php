@@ -33,6 +33,7 @@ class ImageController extends Controller
         'size' => File::size(public_path('photos/upload'), $imageName),
         'imageable_type' => $request->type,
         'imageable_id' => $request->id,
+        'from_dropzone' => $request->from_dropzone,
         'form_token' => $request->token,
       ]);
 

@@ -230,7 +230,7 @@
           dictDefaultMessage: this.$t('Drop files here to upload'),
           dictRemoveFile: this.$t('Remove file'),
           headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` },
-          params: { type: 'page' }
+          params: { type: 'page', from_dropzone: 1 }
         },
       };
     },
@@ -316,7 +316,7 @@
       removedFileEvent(file, error, xhr) {
         axios
           .delete("/api/images/destroy", {
-            params: { url: file.name }
+            params: { url: file.previewElement.querySelector('[data-dz-name]').innerHTML }
           })
           .then(response => {
             this.loading = false
@@ -356,9 +356,11 @@
 
         if(item.images.length) {
           item.images.forEach((image) => {
-              let file = { size: image.size, name: image.url }
-              let url = '/photos/upload/' + image.url
-              this.$refs.myVueDropzone.manuallyAddFile(file, url)
+              if(image.dropzone) {
+                let file = { size: image.size, name: image.url }
+                let url = '/photos/upload/' + image.url
+                this.$refs.myVueDropzone.manuallyAddFile(file, url)
+              }
           })
         }
         this.editedItem = Object.assign({}, item)

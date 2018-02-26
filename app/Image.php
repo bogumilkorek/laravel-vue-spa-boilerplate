@@ -11,7 +11,7 @@ class Image extends Model
   protected $thumbnail_url, $full_url;
 
   protected $fillable = [
-    'url', 'original_url', 'size', 'imageable_id', 'imageable_type', 'form_token'
+    'url', 'original_url', 'size', 'imageable_id', 'imageable_type', 'form_token', 'from_dropzone'
   ];
 
   public function imageable()

@@ -244,7 +244,7 @@
           addRemoveLinks: true,
           dictDefaultMessage: this.$t('Drop files here to upload'),
           dictRemoveFile: this.$t('Remove file'),
-          headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` },
+          headers: { 'Authorization': `Bearer ${window.sessionStorage ? sessionStorage.getItem('token') : ''}` },
           params: { type: 'page', from_dropzone: 1 }
         },
       };

@@ -23,7 +23,7 @@ const getters = {
 const actions = {
     login({ commit }) {
         commit(types.LOGIN)
-        router.push({ path: '/pages' })
+        router.push({name: 'dashboard' })
     },
 
     logout({ commit }) {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Home from './components/Home'
 import Pages from './components/Pages'
 import Login from './components/Login'
 
@@ -14,19 +15,26 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: Pages,
-            meta: { requiresAuth: true },
-        },
-        {
-            path: '/pages',
-            name: 'pages',
-            component: Pages,
-            meta: { requiresAuth: true },
+            component: Home,
         },
         {
             path: '/login',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/admin',
+            name: 'dashboard',
+            component: Pages,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: 'pages',
+                    name: 'pages',
+                    component: Pages,
+                    meta: { requiresAuth: true }
+                }
+            ]
         }
     ],
 });

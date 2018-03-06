@@ -4,6 +4,7 @@
       fixed
       v-model="drawer"
       app
+       v-if="isLogged"
     >
       <v-list dense v-if="isLogged">
 
@@ -29,26 +30,18 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-
-      <v-list dense v-else>
-           <v-list-tile :to="{ name: 'login' }">
-          <v-list-tile-action>
-            <v-icon>face</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>
-              {{ $t('Login') }}
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-     </v-list>
-
     </v-navigation-drawer>
     <v-toolbar color="primary" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer" v-if="isLogged"></v-toolbar-side-icon>
       <v-toolbar-title>
         {{ pageTitle || $t('Admin panel') }}
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down" v-if="!isLogged">
+      <v-btn flat>Link One</v-btn>
+      <v-btn flat>Link Two</v-btn>
+      <v-btn flat>Link Three</v-btn>
+    </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <v-container fluid>

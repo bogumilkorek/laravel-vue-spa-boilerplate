@@ -35,12 +35,13 @@
         "laravel-mix-purgecss": "^1.0.3",
         "mock-local-storage": "^1.0.5",
         "sortablejs": "^1.7.0",
+        "v-img": "^0.2.0",
         "vue-router": "^3.0.1",
         "vue-sweetalert2": "^1.2.4",
         "vue-truncate-filter": "^1.1.7",
         "vue2-dropzone": "^3.0.5",
         "vue2-editor": "^2.4.2",
-        "vuetify": "^1.0.0-beta.6",
+        "vuetify": "^1.0.5",
         "vuex": "^3.0.1",
         "vuex-i18n": "^1.10.5"
     }

@@ -10,10 +10,7 @@ class Page extends Model
         'title', 'content', 'order', 'nav'
       ];
     
-      public function getRouteKeyName()
-      {
-        return 'slug';
-      }
+
 
       public function images()
       {

@@ -75,7 +75,8 @@ publish tymon
 
 <script>
 export default {
-  data: () => ({
+    data() {
+      return {
     loading: false,
     message: '',
     alert: false,
@@ -85,7 +86,8 @@ export default {
       login: '',
       password: ''
     }
-  }),
+  }
+    },
 
   created() {
     this.$store.dispatch("setPageTitle", this.$t('Admin panel'))

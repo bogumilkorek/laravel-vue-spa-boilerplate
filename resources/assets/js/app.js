@@ -10,6 +10,7 @@ import jwt from 'jsonwebtoken'
 import VueTruncate from 'vue-truncate-filter'
 import VueSweetalert2 from 'vue-sweetalert2'
 import vue2Dropzone from 'vue2-dropzone'
+import VueImg from 'v-img'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
@@ -27,6 +28,7 @@ Vue.use(VueTruncate)
 Vue.use(vuexI18n.plugin, store)
 Vue.use(VueSweetalert2)
 Vue.use(vue2Dropzone)
+Vue.use(VueImg)
 
 Vue.i18n.add('pl', translationsPL)
 Vue.i18n.set('pl')

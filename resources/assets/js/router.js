@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from './components/Home'
 import Pages from './components/Pages'
+import PageShow from './components/PageShow'
 import Login from './components/Login'
 
 import store from './store'
@@ -14,8 +15,8 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home,
+            name: 'homepage',
+            component: PageShow,
         },
         {
             path: '/login',
@@ -35,6 +36,11 @@ const router = new VueRouter({
                     meta: { requiresAuth: true }
                 }
             ]
+        },
+        {
+            path: '/:slug',
+            name: 'pageShow',
+            component: PageShow
         }
     ],
 });

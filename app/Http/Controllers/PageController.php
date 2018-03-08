@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['jwt'])->except(['show']);
+        $this->middleware(['jwt'])->except(['show', 'getNav']);
     }
 
     /**
@@ -44,12 +44,15 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Integer  $id
+     * @param  String  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(int $page)
+    public function show(string $slug)
     {
-       $page = Page::findOrFail($page);
+       if($slug == 'undefined')
+            $page = Page::orderBy('order', 'asc')->first();
+       else         
+            $page = Page::where('slug', $slug)->first();
        return new PageResource($page);
     }
 
@@ -114,5 +117,15 @@ class PageController extends Controller
             $page->save();
         }
         return 'Order updated!';
+    }
+
+    /**
+     * Get visible pages for nav
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getNav()
+    {
+        return Page::where('nav', 1)->orderBy('order', 'asc')->get(['title', 'slug']);
     }
 }

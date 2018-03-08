@@ -21,6 +21,7 @@ Route::post('images/store', 'ImageController@store');
 Route::delete('images/destroy', 'ImageController@destroy');
 
 Route::post('pages/reorder', 'PageController@reorder');
+Route::get('pages/get-nav', 'PageController@getNav');
 
 Route::apiResources([
     'pages' => 'PageController'

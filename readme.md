@@ -20,14 +20,14 @@ Everything you need to start building amazing apps!
 `openssl genrsa -passout pass:YOUR_JWT_PASSPHRASE -out storage/jwt/private.pem -aes256 4096`<br />
 `openssl rsa -passin pass:YOUR_JWT_PASSPHRASE -pubout -in storage/jwt/private.pem -out public/jwt/public.pem`
 
+- Install Composer dependencies:<br />
+`composer install`
+
 - Generate app key:<br />
 `php artisan key:generate`
 
 - Generate JWT Secret:<br />
 `php artisan jwt:generate`
-
-- Install Composer dependencies:<br />
-`composer install`
 
 - Run DB migrations:<br />
 `php artisan migrate`

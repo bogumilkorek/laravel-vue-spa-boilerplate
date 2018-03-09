@@ -27,7 +27,7 @@ Everything you need to start building amazing apps!
 `php artisan key:generate`
 
 - Generate JWT Secret:<br />
-`php artisan jwt:generate`
+`php artisan jwt:secret`
 
 - Run DB migrations:<br />
 `php artisan migrate`

@@ -39,7 +39,7 @@ class PageTest extends TestCase
     {
         $page = factory('App\Page')->create();
 
-        $this->apiAs($this->getUser(), 'GET', '/api/pages/' . Page::first()->id)->assertStatus(200);
+        $this->apiAs($this->getUser(), 'GET', '/api/pages/' . Page::first()->slug)->assertStatus(200);
     }
 
     /**

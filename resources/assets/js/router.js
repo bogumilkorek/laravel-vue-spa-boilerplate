@@ -2,9 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from './components/Home'
-import Pages from './components/Pages'
-import PageShow from './components/PageShow'
-import Login from './components/Login'
+import SinglePage from './components/SinglePage'
+import NotFound from './components/NotFound'
+import Login from './components/admin/Login'
+import Pages from './components/admin/Pages'
 
 import store from './store'
 
@@ -16,7 +17,7 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'homepage',
-            component: PageShow,
+            component: SinglePage,
         },
         {
             path: '/login',
@@ -39,18 +40,25 @@ const router = new VueRouter({
         },
         {
             path: '/:slug',
-            name: 'pageShow',
-            component: PageShow
+            name: 'singlePage',
+            component: SinglePage
+        },
+        {
+            path: '*',
+            name: 'notFound',
+            component: NotFound
         }
     ],
 });
 
 router.beforeEach(async (to, from, next) => {
 	if (to.meta.requiresAuth) {
-		if (store.getters.isLogged && sessionStorage.getItem('token'))
-			return next()
-		else
-			return next({ name: 'login' })
+		if (store.getters.isLogged && sessionStorage.getItem('token')) {
+            return next()
+        }
+		else {
+            return next({ name: 'login' })
+        }
 	}
 	next();
 });

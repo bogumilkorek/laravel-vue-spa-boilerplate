@@ -50,10 +50,14 @@ class PageController extends Controller
     public function show(string $slug)
     {
        if($slug == 'undefined')
-            $page = Page::orderBy('order', 'asc')->first();
+            $page = Page::where('nav', 1)->orderBy('order', 'asc')->first();
        else         
             $page = Page::where('slug', $slug)->first();
-       return new PageResource($page);
+            
+       if($page)
+            return new PageResource($page);
+        else
+            return response('Page not found', 404);
     }
 
     /**

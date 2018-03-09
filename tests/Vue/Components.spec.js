@@ -1,7 +1,7 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import expect from 'expect';
-import Login from '../../resources/assets/js/components/Login.vue'
-import Pages from '../../resources/assets/js/components/Pages.vue'
+import Login from '../../resources/assets/js/components/admin/Login.vue'
+import Pages from '../../resources/assets/js/components/admin/Pages.vue'
 import Vuex from 'vuex';
 import vuexI18n from 'vuex-i18n'
 import VueSweetalert2 from 'vue-sweetalert2'

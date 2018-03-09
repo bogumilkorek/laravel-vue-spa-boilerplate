@@ -1,58 +1,62 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Laravel & Vue.js Single Page Application Boilerplate
+Everything you need to start building amazing apps!
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 1. Features
+- Build on top of Laravel 5.6, Vue.js 2.5, and Vuetify 1.0
+- Admin panel: CRUD for pages with JWT Authentication (using RS256 algorithm), drag & drop reordering and option to show desired pages in navbar
+- JWT is also verified by frontend, as well as IP address from token's payload
+- App can be easily translated to desired language using vuex-i18n and translation strings. Just rename *resources/assets/js/translationsPL.js* according to your language and translate it. If you need English language only - just delete this file.
+- Image dropzone
+- WYSIWYG (Quill) with image upload
+- Lightbox
 
-## About Laravel
+## 2. Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+- Clone repository:
+`git clone https://github.com/bogumilkorek/laravel-vue-spa-boilerplate && cd laravel-vue-spa-boilerplate`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Rename *.env.example* to *.env* and insert your database connection data as well as random key (JWT_PASSPHRASE)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+- Generate Private & Public Key using previously typed JWT_PASSPHRASE:
+`openssl genrsa -passout pass:YOUR_JWT_PASSPHRASE -out storage/jwt/private.pem -aes256 4096`
+`openssl rsa -passin pass:YOUR_JWT_PASSPHRASE -pubout -in storage/jwt/private.pem -out public/jwt/public.pem`
 
-## Learning Laravel
+- Generate app key:
+`php artisan key:generate`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+- Generate JWT Secret:
+`php artisan jwt:generate`
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+- Install Composer dependencies:
+`composer install`
 
-## Laravel Sponsors
+- Run DB migrations:
+`php artisan migrate`
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+- If you want to fill DB with example values run seeders:
+`php artisan db:seed`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+- Install Node dependencies:
+`yarn install`
 
-## Contributing
+- Run API tests:
+`vendor/bin/phpunit`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Test Vue components (still in development):
+`yarn test`
 
-## Security Vulnerabilities
+- Compile assets:
+`yarn dev`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Navigate to localhost/laravel-vue-spa-boilerplate and check if everything works fine
 
-## License
+- **Admin panel: /admin, login: admin, password: secret**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 3. Todo
+- Code refactoring
+- Proper Vue components tesing
+
+## 4. License
+Both personal and commercial use allowed without any restrictions.
+Feel free to ask me any questions.
+**Code reviews are always much appreciated :)**

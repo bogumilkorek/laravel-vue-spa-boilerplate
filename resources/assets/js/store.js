@@ -31,7 +31,7 @@ const actions = {
             .then((response) => {
                 sessionStorage.removeItem('token')
                 commit(types.LOGOUT)
-                router.push({ path: '/login' })
+                router.push({ name: 'homepage' })
             })
             .catch((error) => console.log(error))
     },

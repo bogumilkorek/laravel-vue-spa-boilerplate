@@ -12,7 +12,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password'); // grab credentials from the request
+        $credentials = $request->only('username', 'password'); // grab credentials from the request
         $customClaims = [];
         try {
 

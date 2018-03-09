@@ -37,9 +37,10 @@ class ImageController extends Controller
         'form_token' => $request->token,
       ]);
 
-      ImageLib::make(public_path('/photos/upload/' . $imageName))
-      ->fit(265, 149)
-      ->save(public_path('/photos/upload/thumbs/' . $imageName));
+      if(env('GENERATE_THUMBNAILS'))
+        ImageLib::make(public_path('/photos/upload/' . $imageName))
+        ->fit(265, 149)
+        ->save(public_path('/photos/upload/thumbs/' . $imageName));
 
       return $imageName;
 

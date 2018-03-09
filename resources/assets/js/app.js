@@ -80,6 +80,10 @@ axios.interceptors.response.use(response => {
     let errorResponseData = error.response.data
     const errors = ["token_invalid", "token_expired", "token_not_provided"]
 
+    if(error.response.status === 404) {
+        router.push({ name: 'notFound' })
+    }
+
     if (errorResponseData.error && errors.includes(errorResponseData.error)) {
         sessionStorage.removeItem('token')
         router.push({ name: 'login' })

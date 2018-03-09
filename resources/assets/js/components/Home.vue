@@ -5,10 +5,31 @@
         {{ pageTitle || $t('Laravel Vue Spa Boilerplate') }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
-    <v-toolbar-items>
+    <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat v-for="navItem in navItems" :to="navItem.slug" :key="navItem.slug">{{ navItem.title }}</v-btn>
     </v-toolbar-items>
+    <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     </v-toolbar>
+     <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      right
+      disable-resize-watcher
+      floating
+    >
+      <v-list dense>
+
+        <v-list-tile v-for="navItem in navItems" :to="navItem.slug" :key="navItem.slug">
+
+          <v-list-tile-content>
+            <v-list-tile-title>
+            {{ navItem.title }}
+            </v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+      </v-list>
+    </v-navigation-drawer>
     <v-content>
       <v-container fluid>
                           
@@ -26,7 +47,8 @@ export default {
 
       data() {
       return {
-        navItems: {}
+        navItems: {},
+        drawer: false
     }
       },
 

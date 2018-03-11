@@ -11,45 +11,45 @@ Everything you need to start building amazing apps!
 - Image gallery (lightbox)
 
 ## 2. Installation
-⋅⋅1. Clone repository:<br />
+1. Clone repository:<br />
 `git clone https://github.com/bogumilkorek/laravel-vue-spa-boilerplate && cd laravel-vue-spa-boilerplate`
 
-⋅⋅1. Rename *.env.example* to *.env* and insert your database connection data as well as random key (JWT_PASSPHRASE)
+2. Rename *.env.example* to *.env* and insert your database connection data as well as random key (JWT_PASSPHRASE)
 
-⋅⋅1. Generate Private & Public Key using previously typed JWT_PASSPHRASE:<br />
+3. Generate Private & Public Key using previously typed JWT_PASSPHRASE:<br />
 `openssl genrsa -passout pass:YOUR_JWT_PASSPHRASE -out storage/jwt/private.pem -aes256 4096`<br />
 `openssl rsa -passin pass:YOUR_JWT_PASSPHRASE -pubout -in storage/jwt/private.pem -out public/jwt/public.pem`
 
-⋅⋅1. Install Composer dependencies:<br />
+4. Install Composer dependencies:<br />
 `composer install`
 
-⋅⋅1. Generate app key:<br />
+5. Generate app key:<br />
 `php artisan key:generate`
 
-⋅⋅1. Generate JWT Secret:<br />
+6. Generate JWT Secret:<br />
 `php artisan jwt:secret`
 
-⋅⋅1. Run DB migrations:<br />
+7. Run DB migrations:<br />
 `php artisan migrate`
 
-⋅⋅1. If you want to fill DB with example values run seeders:<br />
+8. If you want to fill DB with example values run seeders:<br />
 `php artisan db:seed`
 
-⋅⋅1. Install Node dependencies:<br />
+9. Install Node dependencies:<br />
 `yarn install`
 
-⋅⋅1. Run API tests:<br />
+10. Run API tests:<br />
 `vendor/bin/phpunit`
 
-⋅⋅1. Test Vue components (still in development):<br />
+11. Test Vue components (still in development):<br />
 `yarn test`
 
-⋅⋅1. Compile assets:<br />
+12. Compile assets:<br />
 `yarn dev`
 
-- Navigate to localhost/laravel-vue-spa-boilerplate and check if everything works fine
+13. Navigate to localhost/laravel-vue-spa-boilerplate and check if everything works fine
 
-- **Admin panel: /admin, login: admin, password: secret**
+14. **Admin panel: /admin, login: admin, password: secret**
 
 ## 3. Todo
 - Code refactoring

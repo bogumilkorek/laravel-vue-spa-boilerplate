@@ -342,7 +342,7 @@
             this.loading = false
           })
           .catch(error => {
-             this.$swal(this.$t('Error'), error, 'error')
+             this.$swal(this.$t('Error'), error.toString(), 'error')
           });
       },
 
@@ -362,7 +362,7 @@
             this.snackbarText = this.$t("Page order has been updated.")
           })
           .catch(error => {
-             this.$swal(this.$t('Error'), error, 'error')
+             this.$swal(this.$t('Error'), error.toString(), 'error')
           })
           .finally(() => this.loading = false)
       },
@@ -412,7 +412,7 @@
                 this.snackbarText = this.$t("Page has been deleted.")
               })
               .catch(error => {
-                this.$swal(this.$t('Error'), error, 'error')
+                this.$swal(this.$t('Error'), error.toString(), 'error')
               })
               .finally(() => this.loading = false)
             }
@@ -433,9 +433,16 @@
               this.snackbar = true
               this.snackbarText = this.$t("Page visibility has been updated.")
             })
-            .catch(error => {
-              const message = error.response.data.errors.title[0] || this.$t('Try again later!')
-              this.$swal(this.$t('Error!'), message, 'error')
+           .catch(error => {
+              let message = '';
+              for (let key in error.response.data.errors)
+                message += `${error.response.data.errors[key]}<br />`
+
+              this.$swal({
+                title: this.$t('Error!'), 
+                html: message,
+                type: 'error'
+              })
             })
             .finally(() => this.loading = false)
       },
@@ -479,15 +486,22 @@
               this.closeDialog()
             })
             .catch(error => {
-              const message = error.response.data.errors.title[0] || this.$t('Try again later!')
-              this.$swal(this.$t('Error!'), message, 'error')
+              let message = '';
+              for (let key in error.response.data.errors)
+                message += `${error.response.data.errors[key]}<br />`
+
+              this.$swal({
+                title: this.$t('Error!'), 
+                html: message,
+                type: 'error'
+              })
             })
             .finally(() => this.loading = false)
         } else {
           axios
             .post("/api/pages", {
               title: this.editedItem.title,
-              content: this.editedItem.content,
+              content: this.editedItem.content === '<p><br /></p>' ? '' : this.editedItem.content,
               form_token: this.editedItem.formToken
             })
             .then(response => {
@@ -498,8 +512,15 @@
               this.closeDialog()
             })
             .catch(error => {
-              const message = error.response.data.errors.title[0] || this.$t('Try again later!')
-              this.$swal(this.$t('Error!'), message, 'error')
+              let message = '';
+              for (let key in error.response.data.errors)
+                message += `${error.response.data.errors[key]}<br />`
+
+              this.$swal({
+                title: this.$t('Error!'), 
+                html: message,
+                type: 'error'
+              })
             })
             .finally(() => this.loading = false)
           }

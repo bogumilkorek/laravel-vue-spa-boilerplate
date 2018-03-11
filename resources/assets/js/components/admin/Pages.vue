@@ -82,6 +82,7 @@
                    <div class="pa-4">
                     <vue-dropzone ref="myVueDropzone" id="dropzone" 
                       :options="dropzoneOptions" 
+                      :destroyDropzone="false"
                       v-on:vdropzone-sending="sendingEvent" 
                       v-on:vdropzone-removed-file="removedFileEvent"
                       v-on:vdropzone-success="successEvent">
@@ -342,7 +343,7 @@
             this.loading = false
           })
           .catch(error => {
-             this.$swal(this.$t('Error'), error.toString(), 'error')
+            this.$swal(this.$t('Error'), error.message, 'error')
           });
       },
 
@@ -362,7 +363,7 @@
             this.snackbarText = this.$t("Page order has been updated.")
           })
           .catch(error => {
-             this.$swal(this.$t('Error'), error.toString(), 'error')
+             this.$swal(this.$t('Error'), error.message, 'error')
           })
           .finally(() => this.loading = false)
       },
@@ -412,7 +413,7 @@
                 this.snackbarText = this.$t("Page has been deleted.")
               })
               .catch(error => {
-                this.$swal(this.$t('Error'), error.toString(), 'error')
+                this.$swal(this.$t('Error'), error.message, 'error')
               })
               .finally(() => this.loading = false)
             }

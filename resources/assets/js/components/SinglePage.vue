@@ -10,7 +10,8 @@
         <img 
           v-for="image in imagesFromDropzone" 
           :key="image.url" 
-          v-img:gallery :src="'photos/upload/' + image.url" 
+          v-img:gallery="{ src: 'photos/upload/' + image.url}" 
+          :src="'photos/upload/thumbs/' + image.url" 
           class="img-responsive" 
         />
     </v-layout>
@@ -56,9 +57,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  img {
-    max-height: 200px;
-  }
-</style>
